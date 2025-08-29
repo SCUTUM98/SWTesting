@@ -2,6 +2,11 @@ import pytest
 
 from apps.mycalc import add, sub
 
+# 참/거짓 검증: assert, assert not
+# 비교 검증
+# 멤버십 검증: in, not in
+# 동일성 검증: is, is not
+
 def test_add_positive_num():
     # 준비
     a = 3

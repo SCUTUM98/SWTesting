@@ -1,6 +1,6 @@
 import pytest
 
-from apps.mycalc import add
+from apps.mycalc import add, sub
 
 def test_add_positive_num():
     # 준비
@@ -36,6 +36,42 @@ def test_add_zero_num():
     
     # 실행
     actual_result = add(a,b)
+    
+    # 검증
+    assert actual_result == expected_result
+    
+def test_sub_positive_num():
+    # 준비
+    a = 3
+    b = 2
+    expected_result = 1
+    
+    # 실행
+    actual_result = sub(a,b)
+    
+    # 검증
+    assert actual_result == expected_result
+    
+def test_sub_negative_num():
+    # 준비
+    a = -3
+    b = -4
+    expected_result = 1
+    
+    # 실행
+    actual_result = sub(a,b)
+    
+    # 검증
+    assert actual_result == expected_result
+    
+def test_sub_zero_num():
+    # 준비
+    a = 0
+    b = 0
+    expected_result = 0
+    
+    # 실행
+    actual_result = sub(a,b)
     
     # 검증
     assert actual_result == expected_result

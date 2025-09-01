@@ -26,9 +26,12 @@ try:
     driver.find_element(By.CSS_SELECTOR, '[title="Euphoria 곡정보"]').click()
     
     lyrics = driver.find_element(By.ID, 'd_video_summary').text
+    title = driver.find_element(By.CLASS_NAME, 'song_name').text
+    print(f'========== {title} ==========')
     print(lyrics)
     
     file_object = open("web/lyrics.txt", "w+")
+    file_object.write(f'========== {title} ==========\n')
     file_object.write(lyrics)
     file_object.close()
 finally:

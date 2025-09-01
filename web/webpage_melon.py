@@ -1,4 +1,5 @@
 import selenium
+import time
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -18,12 +19,16 @@ try:
     el = driver.find_element(By.ID, 'top_search')
     el.clear()
     el.send_keys('BTS', Keys.RETURN)
+    time.sleep(1)
     
     driver.find_element(By.CSS_SELECTOR, '[title="앨범 - 페이지 이동"]').click()
+    time.sleep(1)
     #driver.find_element(By.CSS_SELECTOR, '[title="LOVE YOURSELF 結 \'Answer\' - 페이지 이동"]').click()
     driver.find_element(By.CSS_SELECTOR, '#frm > div > ul > li:nth-child(1) > div > div > dl > dt > a').click()
+    time.sleep(1)
     # copy > selector copy
     driver.find_element(By.CSS_SELECTOR, '[title="Euphoria 곡정보"]').click()
+    time.sleep(1)
     
     lyrics = driver.find_element(By.ID, 'd_video_summary').text
     title = driver.find_element(By.CLASS_NAME, 'song_name').text

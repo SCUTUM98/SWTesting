@@ -1,6 +1,7 @@
 import pytest
 
 from test.conftest import calculator_instance
+from test.test_calculator_csv import load_csv, trans
 
 add_test_cases = [(749.12, 597, 1346.12), (70.97, -325.29, -254.32000000000002), (54.4, -464, -409.6), (-163.63, 626.56, 462.92999999999995),
     (-161.46, -177, -338.46000000000004), (0, 50.12, 50.12), (535.1, 794.7, 1329.8000000000002), (-29.7, 0, -29.7), (274.67, 108.97, 383.64),
@@ -21,10 +22,13 @@ add_test_cases = [(749.12, 597, 1346.12), (70.97, -325.29, -254.32000000000002),
     (450, 480, 930), (-564, 403, -161), (673, 560, 1233), (546, -110, 436), (446, 324, 770),
     (675, 939, 1614), (976, 563, 1539), (-801, 410, -391), (168, -253, -85), (240, 786, 1026),
     (-102, -87, -189), (465, -177, 288), (-342, 638, 296), (843, -998, -155), (-260, 203, -57),
-    (656, 303, 959), (115, -690, -575), (384, -987, -603), (240, -781, -541), (-214, 219, 5)]
+    (656, 303, 959), (115, -690, -575), (384, -987, -603), (240, -781, -541), (-214, 219, 5),
+    (0.1, 0.2, pytest.approx(0.3)), (pytest.param(1000000000, 2000000000, 3000000000, id='bigValue'))]
 
 # Exception Test
 div_test_cases = [(10, 0, ZeroDivisionError), ('10', 2, TypeError), (10, '2', TypeError), (None, 2, TypeError)]
+
+csv_add_cases = load_csv('data/add.csv')
 
 @pytest.mark.parametrize('x, y, expected_value', add_test_cases)
 def test_add_cases(calculator_instance, x, y, expected_value):
@@ -52,3 +56,11 @@ def test_multiparam_cases(x, y):
 # test_calculator_param.py::test_multiparam_cases[10-2] PASSED                                                                                       [ 50%]
 # test_calculator_param.py::test_multiparam_cases[100-1] PASSED                                                                                      [ 75%]
 # test_calculator_param.py::test_multiparam_cases[100-2] PASSED  
+
+@pytest.mark.parametrize('x, y, expected', csv_add_cases)
+def test_csv_add(calculator_instance, x, y, expected):
+    if expected == 'TypeError':
+        with pytest.raises(TypeError):
+            calculator_instance.add(trans(x),trans(y))
+    else:
+        assert calculator_instance.add(trans(x),trans(y)) == trans(expected)

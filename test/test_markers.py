@@ -2,6 +2,18 @@ import pytest
 import sys
 import time
 
+# Marker
+# - 테스트에 메타데이터를 붙이는 기능
+# @pytest.mark.markName
+#   ├── @pytest.mark.skip(reason='')
+#   ├── @pytest.mark.skipif(condition, reason='') / ex) condition = sys.platform == 'win32'
+#   └── @pytest.mark.xfail(condition=None, reason='', strict=False, raises=None)
+#       └── reason = 예상 실패 이유, condition = 특정 실패 환경
+# - 용도 
+#    ├── 테스트 선택/ 필터링
+#    ├── 테스트 건너뛰기
+#    └── 실패 예상 테스트 건너뛰기
+
 @pytest.mark.skip(reason="이 기능은 아직 개발 중입니다. 테스트를 건너뜁니다.")
 def test_wip_feature():
     """Work-In-Progress 기능 테스트 (항상 스킵됨)."""

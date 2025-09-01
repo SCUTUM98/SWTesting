@@ -64,15 +64,3 @@ def test_csv_add(calculator_instance, x, y, expected):
             calculator_instance.add(trans(x),trans(y))
     else:
         assert calculator_instance.add(trans(x),trans(y)) == trans(expected)
-        
-# Marker
-# - 테스트에 메타데이터를 붙이는 기능
-# @pytest.mark.markName
-#   ├── @pytest.mark.skip(reason='')
-#   ├── @pytest.mark.skipif(condition, reason='') / ex) condition = sys.platform == 'win32'
-#   └── @pytest.mark.xfail(condition=None, reason='', strict=False, raises=None)
-#       └── reason = 예상 실패 이유, condition = 특정 실패 환경
-# - 용도 
-#    ├── 테스트 선택/ 필터링
-#    ├── 테스트 건너뛰기
-#    └── 실패 예상 테스트 건너뛰기

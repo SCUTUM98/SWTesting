@@ -34,5 +34,11 @@ try:
     file_object.write(f'========== {title} ==========\n')
     file_object.write(lyrics)
     file_object.close()
+    
+    with open(f'web/{title}_lyrics.txt', 'w', encoding='utf-8') as file:
+        file.write(f'========== {title} ==========\n')
+        file.write(lyrics)
+    print(f'{title}_lyrics.txt has saved')
+    
 finally:
     pass

@@ -47,7 +47,6 @@ class LoginPage:
         
     def flash_message(self):
         msg = self.wait.until(ec.visibility_of_element_located(self.FLASH))
-        print(msg.text)
         return msg.text.strip()
 
 if __name__ == '__main__':

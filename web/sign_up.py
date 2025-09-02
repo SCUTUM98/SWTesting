@@ -42,6 +42,9 @@ class SignupPage:
         self.submit_btn.click()
 
     def flash_message(self) -> str:
+        self.flash.wait_for(state='visible')
+        # 화면 전환이 flash msg 출력보다 빨라 msg를 인식하는 문제 발생
+        # 해결을 위해 flash msg가 확실하게 출력되는걸 확인한 후에 msg를 읽어오도록 변경
         return self.flash.inner_text().strip()
 
 if __name__ == "__main__":

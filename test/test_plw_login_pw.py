@@ -4,10 +4,6 @@ from web.plw_login_pw import LoginPage
 from playwright.sync_api import sync_playwright
 
 url = "https://the-internet.herokuapp.com/login"
-USERNAME = '#username'
-PW = '#password'
-BTN = 'button[type="submit"]'
-MSG = '#flash'
 
 LOGIN_CASES = [
     ('tomsmith', 'SuperSecretPassword!', 'You logged into a secure area!')
@@ -38,6 +34,5 @@ def test_login(page, username, pw, expected):
     page.login(username, pw)
     flash = page.flash_message()
     
-    #flash_msg = page.locator(MSG).inner_text().strip()
     assert expected in flash
     
